@@ -1,7 +1,3 @@
-# Companies_house
-
-This is an Browser based automated bot using for scrapping data from the beta.companieshouse.gov.uk
-
 LOADED https://beta.companieshouse.gov.uk/company/11116197/officers?page=1
 31 PERCENT WOOL LTD:   0%|                                                                                                | 0/10 [00:00<?, ?it/s]
 31 PERCENT WOOL LTD:  10%|████████▊                                                                               | 1/10 [00:00<00:00,  9.98it/s]
@@ -77,4 +73,4 @@ LOADED https://beta.companieshouse.gov.uk/company/12775713/officers?page=1
 33 PERCENT LTD:  80%|██████████████████████████████████████████████████████████████████████████▍                  | 8/10 [00:00<00:00,  9.95it/s]
 33 PERCENT LTD:  90%|███████████████████████████████████████████████████████████████████████████████████▋         | 9/10 [00:00<00:00,  9.94it/s]
 33 PERCENT LTD: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 10/10 [00:01<00:00,  9.94it/s]
-EXPORTED
+
