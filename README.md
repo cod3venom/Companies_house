@@ -1,6 +1,6 @@
 # Companies_house
-## _Companies House is a bot for beta.companieshouse.gov.uk._  
-## _Generally you can use it to grow your database about companies and their employees._
+ _Companies House is a bot for beta.companieshouse.gov.uk._  
+ _Generally you can use it to grow your database about companies and their employees._
 
 * Requirements
   * Python3 
@@ -15,4 +15,4 @@
   * python3 Main.py extract path/to/links.txt
 
 
-![](Screen.png | width=300)
+![test](Screen.png | width=48)
