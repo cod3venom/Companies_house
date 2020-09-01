@@ -1,1 +1,1 @@
-<img src="Screen.png"?
+![alt text](Screen.png)
