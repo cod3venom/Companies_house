@@ -15,6 +15,5 @@
   * python3 Main.py extract path/to/links.txt
 
 
-![alt text](Screen.png | width=400)
 
-![](Screen.png =250x250)
+![alt text](Screen.png =250x250)
