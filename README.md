@@ -16,4 +16,4 @@
 
 
 
-![alt text](Screen.png =250x250)
+<img src='Screen.png' width='600' height='400'>
