@@ -23,7 +23,7 @@ class Browser:
     def __init__(self, linkdb,option):
         self.LINKS_LOCAL = linkdb
         print("PATH IS {}".format(linkdb))
-        self.CHROME = webdriver.Chrome(executable_path=r"/usr/local/share/chromedriver", chrome_options=self.config_browser())
+        self.CHROME = webdriver.Chrome(executable_path=r"/usr/lib/chromium-browser/chromedrive", chrome_options=self.config_browser())
         if option == 'sublinks':
             self.Sublinks()
         if option == 'extract':
