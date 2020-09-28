@@ -23,7 +23,7 @@ class Browser:
     def __init__(self, linkdb,option):
         self.LINKS_LOCAL = linkdb
         print("PATH IS {}".format(linkdb))
-        #self.CHROME = webdriver.Chrome(executable_path=r"/usr/lib/chromium-browser/chromedriver", chrome_options=self.config_browser())
+        self.CHROME = webdriver.Chrome(executable_path=r"/usr/local/share/chromedriver", chrome_options=self.config_browser())
         if option == 'sublinks':
             self.Sublinks()
         if option == 'extract':
@@ -31,23 +31,25 @@ class Browser:
 
     def config_browser(self):
         option = Options()
-        option.headless = True
+        #option.headless = True
         option.add_argument("--window-size=1920,1080")
         option.add_argument('--no-sandbox')
         return option
 
+    
     def LoadLinks(self):
         LINKSTACK = Settings().Read(Settings.CACHE_PAGES).split('\n')
         for link in LINKSTACK:
-            CHROME = webdriver.Chrome(executable_path=r"/usr/lib/chromium-browser/chromedriver", chrome_options=self.config_browser())
-            CHROME.implicitly_wait(10)
-            wait = WebDriverWait(CHROME,10)
-            CHROME.get(link)
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "body")))
-            #th = threading.Thread(target=Exfiltrator(CHROME,link).getBox())
-            #th.start()
-            Exfiltrator(CHROME,link).getBox()      
-        CHROME.quit()
+            print("OPENING {}".format(link))
+            try:
+                self.CHROME.get(link)
+                Exfiltrator(self.CHROME,link).getBox()
+            except ConnectionAbortedError:
+                print("CONNECTION PROBLEM {}".format(link))
+            except ConnectionRefusedError:
+                print("CONNECTION PROBLEM {}".format(link))
+            WebDriverWait(self.CHROME,5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "body")))
+            #Exfiltrator(self.CHROME, link).getBox()
 
     def Sublinks(self):
         self.CHROME = webdriver.Chrome(executable_path=r"/usr/lib/chromium-browser/chromedriver", chrome_options=self.config_browser())
@@ -63,10 +65,6 @@ class Browser:
                 print(link)
                 self.WritePage(link)
         self.CHROME.quit()
-                        
-            
-          
-             
 
     def SoupHtml(self,url):
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'}
@@ -103,7 +101,7 @@ class Exfiltrator:
             spl = text.split("$")
             CsvCore().Append(spl, Settings.EXPORT)
             print('EXPORTED')
-        self.CHROME.quit()
+        #self.CHROME.quit()
 
 
     def Compile(self,text):
