@@ -7,17 +7,7 @@ import sys, os, threading
 if __name__ == '__main__':
     Logo().Draw()
     try:
-        input = sys.argv[1]
-        path = sys.argv[2]
-        if input == 'sublinks':
-            if os.path.isfile(path):
-                Browser(path,'sublinks')  
-        if input == 'extract':
-            if os.path.isfile(path):
-                CsvCore().CreateHeaders() 
-                Browser(path,'extract')
-        else:
-            Settings().Debug(0,"LINKS FILE DOESN'T EXISTS")
+         Browser("","extract")
 
     except IndexError as ieror:
          print(ieror)

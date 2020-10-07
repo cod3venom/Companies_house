@@ -17,7 +17,7 @@ from colorama import init
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import os, time, sys, csv, re, threading, requests, random, colorama
-
+from Kernel.PHP import PHP
 
 class Browser:
     def __init__(self, linkdb,option):
@@ -38,9 +38,9 @@ class Browser:
 
     
     def LoadLinks(self):
-        LINKSTACK = Settings().Read(Settings.CACHE_PAGES).split('\n')
-        for link in LINKSTACK:
-            print("OPENING {}".format(link))
+        _php = PHP()
+        link= _php.nextLink()
+        while link !="":
             try:
                 self.CHROME.get(link)
                 Exfiltrator(self.CHROME,link).getBox()
@@ -49,7 +49,8 @@ class Browser:
             except ConnectionRefusedError:
                 print("CONNECTION PROBLEM {}".format(link))
             WebDriverWait(self.CHROME,5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "body")))
-            #Exfiltrator(self.CHROME, link).getBox()
+                #Exfiltrator(self.CHROME, link).getBox()
+            link= _php.nextLink()
 
     def Sublinks(self):
         self.CHROME = webdriver.Chrome(executable_path=r"/usr/lib/chromium-browser/chromedriver", chrome_options=self.config_browser())
